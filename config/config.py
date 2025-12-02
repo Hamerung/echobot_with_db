@@ -87,6 +87,8 @@ def load_config(path: str | None = None) -> Config:
         frmt=env('LOG_FORMAT')
     )
 
+    logger.info('Configuration loaded successfully!!!')
+
     return Config(
         bot=BotSettings(token=token, admin_ids=admin_ids),
         log=log,
