@@ -3,6 +3,7 @@ import logging
 from psycopg import AsyncConnection, Error
 
 from config.config import Config, load_config
+from app.infrastructure.database.connections import get_pg_connection
 
 
 config: Config = load_config()
