@@ -6,7 +6,7 @@ from config.config import Config, load_config
 from app.infrastructure.database.connections import get_pg_connection
 
 
-config: Config = load_config()
+config: Config = load_config('.env')
 
 logging.basicConfig(
     level=config.log.level,
@@ -36,7 +36,7 @@ async def main():
                             id SERIAL PRIMARY KEY,
                             user_id BIGINT NOT NULL UNIQUE,
                             username VARCHAR(50),
-                            created_at TIMESTAMPZ NOT NULL DEFAULT NOW(),
+                            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                             language VARCHAR(10) NOT NULL,
                             role VARCHAR(30) NOT NULL,
                             is_alive BOOLEAN NOT NULL,
@@ -47,8 +47,8 @@ async def main():
                     query='''
                         CREATE TABLE IF NOT EXISTS activity (
                             id SERIAL PRIMARY KEY,
-                            user BIGINT REFERNSEC user(user_id),
-                            created_at TIMESTAMPZ NOT NULL DEFAULT NOW(),
+                            user_id BIGINT REFERENCES users(user_id),
+                            created_at TIMESTAMP NOT NULL DEFAULT NOW(),
                             activity_date DATE NOT NULL DEFAULT CURRENT_DATE,
                             actions INT NOT NULL DEFAULT 1
                         );

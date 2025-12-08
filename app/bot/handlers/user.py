@@ -32,7 +32,7 @@ async def process_start_command(
     bot: Bot,
     state: FSMContext,
     admin_ids: list[int],
-    trans: dict,
+    translations: dict,
 ):
     user_row = await get_user(conn, user_id=message.from_user.id)
     if user_row is None:
@@ -64,7 +64,7 @@ async def process_start_command(
             if msg_id:
                 await bot.edit_message_reply_markup(chat_id=message.from_user.id, message_id=msg_id)
         user_lang = await get_user_lang(conn, user_id=message.from_user.id)
-        i18n = trans.get(user_lang)
+        i18n = translations.get(user_lang)
 
     await bot.set_my_commands(
         commands=get_main_menu_commands(i18n=i18n, role=user_role),

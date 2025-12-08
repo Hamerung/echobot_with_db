@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class DataBaseMiddleware(BaseMiddleware):
     async def __call__(
             self,
-            handler: Callable[[Update, dict[str, Any], Awaitable[Any]]],
+            handler: Callable[[Update, dict[str, Any]], Awaitable[Any]],
             event: Update,
             data: dict[str, Any]
     ) -> Any:

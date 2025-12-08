@@ -4,7 +4,7 @@ import logging
 from app.bot import main
 from config.config import Config, load_config
 
-config: Config = load_config()
+config: Config = load_config('.env')
 
 logging.basicConfig(
     level=config.log.level,
@@ -12,4 +12,4 @@ logging.basicConfig(
     style='{'
 )
 
-asyncio.run(main())
+asyncio.run(main(config))

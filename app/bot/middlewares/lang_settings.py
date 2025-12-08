@@ -18,10 +18,10 @@ class LangSettingsMiddleware(BaseMiddleware):
     ) -> Any:
         user: User = data.get('event_from_user')
         if user is None:
-            return handler(event, data)
+            return await handler(event, data)
 
         if event.callback_query is None:
-            return handler(event, data)
+            return await handler(event, data)
 
         locales: list[str] = data.get('locales')
 
@@ -36,4 +36,4 @@ class LangSettingsMiddleware(BaseMiddleware):
             user_context_data.update(user_lang=event.callback_query.data)
             await state.set_data(user_context_data)
 
-        return handler(event, data)
+        return await handler(event, data)

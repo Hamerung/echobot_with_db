@@ -26,7 +26,7 @@ class RedisSettings:
     host: str
     port: int
     db: int
-    user: str
+    username: str
     password: str
 
 
@@ -54,7 +54,7 @@ def load_config(path: str | None = None) -> Config:
 
     env.read_env(path)
 
-    token = env['BOT_TOKEN']
+    token = env('BOT_TOKEN')
 
     if not token:
         raise ValueError('BOT_TOKEN must not be empty!')

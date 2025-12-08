@@ -35,4 +35,4 @@ class SwadowBanMiddleware(BaseMiddleware):
                 await event.callback_query.answer()
             return
 
-        return handler(event, data)
+        return await handler(event, data)

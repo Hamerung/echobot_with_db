@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 settings_router = Router()
 
 
-@settings_router.message(StateFilter(LangSG), ~CommandStart)
+@settings_router.message(StateFilter(LangSG), ~CommandStart())
 async def procces_any_message_when_lang(
     message: Message,
     bot: Bot,
